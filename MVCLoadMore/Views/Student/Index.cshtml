@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVCLoadMore.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.CurrentPage" />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+    </tr>
+}
+
+</table>
+
+<div id="loadMore" style="background-color:lightpink;border:1px solid red; ">加载更多</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#loadMore").click(function () {
+            var currentPage = $("#hidCurrentPage").val();
+            $.get("Student/_StudentDetails", { currentPage: parseInt(currentPage) + 1 }, function (data) {
+                $("#hidCurrentPage").val(parseInt(currentPage) + 1);  //设置隐藏域的值+1；
+                $(".table").append(data).find("tr");
+
+            });
+          
+
+
+
+
+
+
+
+        });
+
+
+
+
+    });
+
+</script>

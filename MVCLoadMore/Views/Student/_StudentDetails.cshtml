@@ -1,0 +1,23 @@
+﻿@{
+    
+    Layout = null;
+}
+
+@using MVCLoadMore.Models;
+@model List<MVCLoadMore.Models.Student>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+           @item.Name
+        </td>
+        <td>
+            @item.Age
+        </td>
+        <td>
+            @item.Email
+        </td>
+    </tr>
+}
+
