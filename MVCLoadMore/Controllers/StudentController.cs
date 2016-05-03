@@ -38,7 +38,7 @@ namespace MVCLoadMore.Controllers
         /// <param name="orderLambda">排序条件</param>
         /// <returns></returns>
         public List<Student> GetPagedList<TKey>(int pageIndex, int pageSize, Func<Student, TKey> orderLambda)
-        {
+        { 
 
             var query = db.Students.OrderBy(orderLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize).AsQueryable();
               return query .ToList();
